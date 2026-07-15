@@ -1,0 +1,6 @@
+{
+  "name": "Aghaaz Strategic Momentum",
+  "description": "An interactive strategic marketing workspace including a client flashcard flow, lead analytics dashboard, card hierarchy manager, and configuration settings.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
