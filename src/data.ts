@@ -79,69 +79,8 @@ export const defaultCards: Card[] = [
 ];
 
 // Default initial leads matching the exact screenshot entries
-export const defaultLeads: Lead[] = [
-  {
-    id: 'lead-1',
-    name: 'Jonathan Doe',
-    company: 'Nexus Tech Solutions',
-    email: 'j.doe@nexustech.io',
-    phone: '+1 (555) 012-3456',
-    choices: [
-      { cardId: 'lead-intake', question: 'Primary Strategic Goal', answer: 'Brand Launch' },
-      { cardId: 'revenue-tier', question: 'Revenue Tier', answer: 'Digital Audit' },
-      { cardId: 'extra', question: 'Strategic Tier', answer: 'Enterprise Tier' }
-    ],
-    score: 92,
-    status: 'Finished',
-    timestamp: '2m ago',
-    createdTime: new Date(Date.now() - 2 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'lead-2',
-    name: 'Sarah Al-Farsi',
-    company: 'Lumina Architecture',
-    email: 'sarah@lumina.arch',
-    phone: '+971 50 123 4567',
-    choices: [
-      { cardId: 'lead-intake', question: 'Primary Strategic Goal', answer: 'Case Studies' },
-      { cardId: 'revenue-tier', question: 'Revenue Tier', answer: 'Design Sprints' }
-    ],
-    score: 65,
-    status: 'Finished',
-    timestamp: '14m ago',
-    createdTime: new Date(Date.now() - 14 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'lead-3',
-    name: 'Marcus King',
-    company: 'Kingpin Venture Capital',
-    email: 'marcus@kingpin.vc',
-    phone: '+44 20 7946 0123',
-    choices: [
-      { cardId: 'lead-intake', question: 'Primary Strategic Goal', answer: 'About' },
-      { cardId: 'revenue-tier', question: 'Revenue Tier', answer: 'Growth Pack' }
-    ],
-    score: 40,
-    status: 'Abandoned',
-    timestamp: '25m ago',
-    createdTime: new Date(Date.now() - 25 * 60 * 1000).toISOString()
-  },
-  {
-    id: 'lead-4',
-    name: 'Elena Lopez',
-    company: 'Retail Spark',
-    email: 'elena@retailspark.com',
-    phone: '+34 912 345 678',
-    choices: [
-      { cardId: 'lead-intake', question: 'Primary Strategic Goal', answer: 'Contact' },
-      { cardId: 'revenue-tier', question: 'Revenue Tier', answer: 'Express Audit' }
-    ],
-    score: 88,
-    status: 'Finished',
-    timestamp: '1h ago',
-    createdTime: new Date(Date.now() - 60 * 60 * 1000).toISOString()
-  }
-];
+// No seed leads — starts empty, populated by real client submissions
+export const defaultLeads: Lead[] = [];
 
 export const defaultSettings: AgencySettings = {
   logoUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA1rU9NVA-UL_VFnPsnmJ8FgGB-BhOwUjE8IGol0rq_S5gkH6Ni-jomWO3oGT-9-_EhImH7X8vj9y4BFMjn_rAHa8H26IyU7z0t0Qs0e8h2sdupTcF3tVUpIn7QcrvUUurRxQs8HSHf877Jb66CzxD0ASeXFk7MSANowF_7kOI2ccAFx4nYfjTUwQux2ChUNl9JqTp2cGEUrDZX9IJa3stFIeBU0lEanzkyJO1RysK1YTHFT2ENldGU2ORR8kI1CATkTsj9gKhqTCOG',

@@ -92,11 +92,11 @@ export default function Sidebar({ activeTab, onTabChange, onExitAdmin, onTrigger
       {/* Admin Profile Panel & Support Links */}
       <div className="mt-6 pt-4 border-t border-slate-800/50">
         <div className="flex items-center gap-3 p-2 bg-[#1A1D23]/60 border border-slate-800/50 rounded-lg mb-3">
-          <div className="w-8 h-8 rounded-full overflow-hidden border border-slate-800/50 shrink-0">
+          <div className="w-8 h-8 rounded-full overflow-hidden border border-slate-800/50 shrink-0 bg-slate-900 p-1">
             <img 
-              className="w-full h-full object-cover" 
-              alt="Strategist portrait"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM4C6zI3mgu3KJ9T-0yO0P4sp9FzOPy7K7md1VUsKR7lxsI5ILco8oqrVAqrup2lZjjsN1BsojcLsGai_dE6v2fdawcIZ_b2CyLCXROOHIOERNtBuxC_D7foecWa0WAkWL6WqzpdewpbFxOzGsWq6a9riMBWwBNFt-4LZtl4_A0EfQEFvyKkoYDovWBJOm1gQHTwMtfDIO0L0Smw5RrjUgXyDwsiK24-4cIQ1i0bEWifZwIVYpTX-Jbk9MkavHeWRZ-qIk_HyDiE73" 
+              className="w-full h-full object-contain" 
+              alt="Aghaaz Logo"
+              src={settings.logoUrl} 
             />
           </div>
           <div className="overflow-hidden">
