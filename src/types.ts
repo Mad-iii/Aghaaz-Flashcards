@@ -47,6 +47,7 @@ export interface Lead {
   status: 'Finished' | 'Abandoned' | 'In Progress';
   timestamp: string; // human readable like "2m ago" or full date
   createdTime: string; // ISO string for sorting
+  durationSeconds?: number; // time taken from flow start to submission
 }
 
 export interface AgencySettings {

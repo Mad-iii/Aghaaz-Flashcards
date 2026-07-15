@@ -59,6 +59,7 @@ export default function ClientFlow({ onNavigateToAdmin }: ClientFlowProps) {
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [newLead, setNewLead] = useState<Lead | null>(null);
+  const flowStartTimeRef = useRef<number>(Date.now());
 
   // Parallax ref
   const activeCardRef = useRef<HTMLDivElement>(null);
@@ -141,6 +142,7 @@ export default function ClientFlow({ onNavigateToAdmin }: ClientFlowProps) {
 
       // Momentum score generation
       const calculatedScore = Math.floor(Math.random() * 15) + 80;
+      const durationSeconds = Math.round((Date.now() - flowStartTimeRef.current) / 1000);
 
       const leads = loadLeads();
       const leadId = `lead-${Date.now()}`;
@@ -154,7 +156,8 @@ export default function ClientFlow({ onNavigateToAdmin }: ClientFlowProps) {
         score: calculatedScore,
         status: 'Finished',
         timestamp: 'Just now',
-        createdTime: new Date().toISOString()
+        createdTime: new Date().toISOString(),
+        durationSeconds
       };
 
       const updatedLeads = [newLeadRecord, ...leads];

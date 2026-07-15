@@ -59,13 +59,38 @@ export default function AdminDashboard({ onNavigateToTab }: AdminDashboardProps)
     return () => clearInterval(interval);
   }, []);
 
-  const settings = loadSettings();
+const settings = loadSettings();
 
-  // Dynamic statistics calculations
-  const totalInquiries = leads.length + 1280; // Scale base matches screenshot
-  const activeFlowCount = 124;
-  const conversionRate = 9.4;
-  const avgTime = "1m 42s";
+  // Real statistics calculated from actual lead + flow data
+  const totalInquiries = leads.length;
+
+  const finishedLeads = leads.filter(l => l.status === 'Finished');
+  const conversionRate = leads.length > 0 
+    ? Math.round((finishedLeads.length / leads.length) * 1000) / 10 
+    : 0;
+
+  const leadsWithDuration = leads.filter(l => typeof l.durationSeconds === 'number' && l.durationSeconds! > 0);
+  const avgTime = leadsWithDuration.length > 0
+    ? (() => {
+        const avgSeconds = Math.round(
+          leadsWithDuration.reduce((sum, l) => sum + (l.durationSeconds || 0), 0) / leadsWithDuration.length
+        );
+        const mins = Math.floor(avgSeconds / 60);
+        const secs = avgSeconds % 60;
+        return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+      })()
+    : '—';
+
+  const [activeFlowCount, setActiveFlowCount] = useState<number>(0);
+
+  useEffect(() => {
+    import('../data').then(({ loadChains, loadActiveChainId }) => {
+      const chains = loadChains();
+      const activeId = loadActiveChainId();
+      const activeChain = chains.find(c => c.id === activeId);
+      setActiveFlowCount(activeChain ? activeChain.cards.length : 0);
+    });
+  }, [leads]);
 
   const filteredLeads = leads.filter(lead => 
     lead.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -179,13 +204,9 @@ export default function AdminDashboard({ onNavigateToTab }: AdminDashboardProps)
               <span className="font-mono text-[10px] uppercase tracking-wider font-semibold">Active Flows</span>
               <Activity className="w-4 h-4 text-indigo-400" />
             </div>
-            <div className="flex items-baseline gap-2">
-              <span className="font-display text-3xl font-bold text-white">{activeFlowCount}</span>
-              <span className="text-emerald-500 font-mono text-[11px] font-bold flex items-center">
-                <TrendingUp className="w-3.5 h-3.5 mr-0.5" />
-                +12%
-              </span>
-            </div>
+              <div className="flex items-baseline gap-2">
+                  <span className="font-display text-3xl font-bold text-white">{activeFlowCount}</span>
+                </div>
           </div>
 
           <div className="bg-[#0F1115] border border-slate-800/80 p-5 rounded-xl flex flex-col justify-between hover:border-indigo-500/80 transition-all shadow-sm">
@@ -195,10 +216,6 @@ export default function AdminDashboard({ onNavigateToTab }: AdminDashboardProps)
             </div>
             <div className="flex items-baseline gap-2">
               <span className="font-display text-3xl font-bold text-white">{totalInquiries}</span>
-              <span className="text-emerald-500 font-mono text-[11px] font-bold flex items-center">
-                <TrendingUp className="w-3.5 h-3.5 mr-0.5" />
-                +24%
-              </span>
             </div>
           </div>
 
@@ -209,9 +226,6 @@ export default function AdminDashboard({ onNavigateToTab }: AdminDashboardProps)
             </div>
             <div className="flex items-baseline gap-2">
               <span className="font-display text-3xl font-bold text-white">{conversionRate}%</span>
-              <span className="text-indigo-400 font-mono text-[11px] font-semibold">
-                Stable
-              </span>
             </div>
           </div>
 
@@ -222,10 +236,6 @@ export default function AdminDashboard({ onNavigateToTab }: AdminDashboardProps)
             </div>
             <div className="flex items-baseline gap-2">
               <span className="font-display text-2xl font-bold text-white">{avgTime}</span>
-              <span className="text-emerald-500 font-mono text-[11px] font-bold flex items-center">
-                <TrendingDown className="w-3.5 h-3.5 mr-0.5 text-emerald-500" />
-                -5s
-              </span>
             </div>
           </div>
 
