@@ -39,9 +39,7 @@ export default function App() {
     return (
       <AdminLockScreen 
         onVerify={(pass) => {
-          const meta = import.meta as any;
-          const securePasscode = meta.env?.VITE_ADMIN_PASSCODE;
-          console.log('DEBUG — entered:', JSON.stringify(pass), 'expected:', JSON.stringify(securePasscode));
+          const securePasscode = import.meta.env.VITE_ADMIN_PASSCODE;
           if (pass === securePasscode) {
             setIsAuthenticated(true);
             return true;

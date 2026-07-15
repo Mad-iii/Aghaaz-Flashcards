@@ -16,9 +16,8 @@ export const getSupabaseConfig = (): SupabaseConfig => {
   const localUrl = localStorage.getItem(SUPABASE_URL_KEY);
   const localKey = localStorage.getItem(SUPABASE_KEY_KEY);
 
-  const meta = import.meta as any;
-  const envUrl = (meta.env?.VITE_SUPABASE_URL as string) || null;
-  const envKey = (meta.env?.VITE_SUPABASE_ANON_KEY as string) || null;
+  const envUrl = (import.meta.env.VITE_SUPABASE_URL as string) || null;
+  const envKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || null;
 
   return {
     url: localUrl || envUrl || null,
