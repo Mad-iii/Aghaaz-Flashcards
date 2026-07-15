@@ -41,6 +41,7 @@ export default function App() {
         onVerify={(pass) => {
           const meta = import.meta as any;
           const securePasscode = meta.env?.VITE_ADMIN_PASSCODE;
+          console.log('DEBUG — entered:', JSON.stringify(pass), 'expected:', JSON.stringify(securePasscode));
           if (pass === securePasscode) {
             setIsAuthenticated(true);
             return true;
