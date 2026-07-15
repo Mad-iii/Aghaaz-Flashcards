@@ -35,6 +35,7 @@ export default function App() {
   }
 
   // Secure Gate Lock checks
+  console.log('Loaded passcode:', meta.env?.VITE_ADMIN_PASSCODE);
   if (viewMode === 'admin' && !isAuthenticated) {
     return (
       <AdminLockScreen 
