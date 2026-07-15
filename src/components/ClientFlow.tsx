@@ -169,6 +169,7 @@ export default function ClientFlow({ onNavigateToAdmin }: ClientFlowProps) {
   };
 
   const submitLeadDirectly = (finalChoices: ChoiceRecord[]) => {
+    const durationSeconds = Math.round((Date.now() - flowStartTimeRef.current) / 1000);
     const leads = loadLeads();
     const leadId = `lead-${Date.now()}`;
     const newLeadRecord: Lead = {
@@ -181,7 +182,8 @@ export default function ClientFlow({ onNavigateToAdmin }: ClientFlowProps) {
       score: 75,
       status: 'Finished',
       timestamp: 'Just now',
-      createdTime: new Date().toISOString()
+      createdTime: new Date().toISOString(),
+      durationSeconds
     };
 
     saveLeads([newLeadRecord, ...leads]);
@@ -232,7 +234,7 @@ export default function ClientFlow({ onNavigateToAdmin }: ClientFlowProps) {
           </button>
           
           <a 
-            href="https://instagram.com" 
+            href="https://www.instagram.com/aghaaz.agency" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-slate-400 hover:text-white transition-all"
